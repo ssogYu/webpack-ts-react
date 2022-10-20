@@ -136,10 +136,12 @@ const baseConfig = {
     },
     optimization: {
         //生产环境才会生效
-        minimizer: [
+        minimize: !devNode,
+        minimizer: [//压缩配置
             new CssMinimizerPlugin(),//压缩css，想在开发环境下启用 CSS 优化，optimization.minimize 设置为 true
         ],
-        splitChunks: {
+        splitChunks: {//代码分割
+          chunks: "all",
           cacheGroups: {
             vendor: {
               // 第三方模块一般处于node_modules中，所以这里缓存 node_modules 中第三方的模块
